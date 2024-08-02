@@ -1,4 +1,5 @@
 # streamlit run "streamlit_rbf(1.51).py" --server.enableXsrfProtection false
+!pip install plotly
 
 import numpy as np
 import pandas as pd
