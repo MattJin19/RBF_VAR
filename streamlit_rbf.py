@@ -1,4 +1,4 @@
-# streamlit run "streamlit_rbf(1.5).py" --server.enableXsrfProtection false
+# streamlit run "streamlit_rbf(1.51).py" --server.enableXsrfProtection false
 
 import numpy as np
 import pandas as pd
@@ -27,7 +27,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Sidebar for controls
+# Sidebar for controls =================
 st.sidebar.title('Controls')
 
 # File uploader for CSV
@@ -52,8 +52,9 @@ data = st.session_state.data
 columns = data.columns
 
 # Dropdowns for selecting axes and heatmap values
-x_axis = st.sidebar.selectbox('Select X-axis', columns)
-y_axis = st.sidebar.selectbox('Select Y-axis', columns)
+x_col, y_col= st.sidebar.columns(2)
+x_axis = x_col.selectbox('Select X-axis', columns)
+y_axis = y_col.selectbox('Select Y-axis', columns)
 heatmap_value = st.sidebar.selectbox('Select Heatmap Value', columns)
 
 # Slider for selecting scatter marker size
@@ -65,12 +66,21 @@ num_points = st.sidebar.slider('Select Number of Points', 2, 300, 2, 10)
 # Slider for selecting resolution
 resolution = st.sidebar.slider('Select Resolution', 50, 500, 100, 10)
 
+# Color pickers for selecting colorbar start and end colors in the same row
+col1, col2 = st.sidebar.columns(2)
+color_start = col1.color_picker('Start Color', '#FF0000')  # Red
+color_end = col2.color_picker('End Color', '#0000FF')  # Blue
+
 # Inputs for controlling the colorbar range
-colorbar_min = st.sidebar.number_input('Colorbar Min Value', value=float(data[heatmap_value].min()))
-colorbar_max = st.sidebar.number_input('Colorbar Max Value', value=float(data[heatmap_value].max()))
+col_min, col_max= st.sidebar.columns(2)
+colorbar_min = col_min.number_input('Colorbar Min Value', value=float(data[heatmap_value].min()))
+colorbar_max = col_max.number_input('Colorbar Max Value', value=float(data[heatmap_value].max()))
 
 # Checkbox for showing/hiding row index annotations
 show_annotations = st.sidebar.checkbox('Show Row Index Annotations', value=True)
+
+
+# =================
 
 # Extract data based on selected number of points
 x_raw = add_noise(data[x_axis].values)[:num_points]
@@ -87,12 +97,13 @@ rbf = Rbf(x_raw, y_raw, z_filtered, function='linear')
 x_grid, y_grid = np.meshgrid(np.linspace(x_min, x_max, resolution), np.linspace(y_min, y_max, resolution))
 z_grid = rbf(x_grid, y_grid)
 
-# Create heatmap
+# Create heatmap with custom color scale
+colorscale = [[0, color_start], [1, color_end]]
 heatmap = go.Heatmap(
     z=z_grid,
     x=np.linspace(x_min, x_max, resolution),
     y=np.linspace(y_min, y_max, resolution),
-    colorscale='RdBu',
+    colorscale=colorscale,
     zmin=colorbar_min,
     zmax=colorbar_max,
     colorbar=dict(title=heatmap_value, tickvals=np.arange(np.ceil(colorbar_min), np.floor(colorbar_max) + 1, 1)),
