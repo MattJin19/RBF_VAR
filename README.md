@@ -8,7 +8,7 @@ Complexity: The dataset may include intricate relationships and features that ca
 Diversity in Model Interpretations: Different models trained on the dataset should yield diverse interpretations or feature importances.  
 Sensitivity Analysis: The dataset should facilitate analysis of how small changes in data or model parameters affect the outputs and interpretations.  
 
-Purpose:
+Goal:
 ===
 Model Interpretability: To understand how different models interpret the same data and to study the robustness of model explanations.    
 Bias and Fairness: To explore how different models might exhibit biases or fairness issues in various ways despite similar performance.    
