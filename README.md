@@ -14,3 +14,29 @@ Model Interpretability: To understand how different models interpret the same da
 Bias and Fairness: To explore how different models might exhibit biases or fairness issues in various ways despite similar performance.    
 Ensemble Methods: To analyze the benefits of combining multiple models to achieve better generalization and robustness.  
 
+## Installation
+
+The code requires Python >= 3.8  
+NumPy: 1.19.5  
+Matplotlib: 3.2.2  
+Pandas: 1.1.5.  
+
+if not please use:
+```
+pip install numpy
+pip install matplotlib
+pip install pandas
+```
+
+## License
+
+VAM code released under the Apache License 2.0. See [LICENSE](LICENSE) for additional details.
+
+## Citing RIT ٩(๑>◡<๑)۶
+
+If you find this repository useful, please consider giving a star :star: and citation:
+
+```
+@article{
+}
+```
