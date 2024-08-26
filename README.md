@@ -1,5 +1,5 @@
-# RBF_VAM
-This is the GitHub Repository for the RBF visualization for VAM. VAM is short for Visual Analysis for Missingness. It is built upon a machine-learning model dataset called the Rashomon dataset. If a machine learning model is in the Rashomon dataset, it has a similar performance to other machine learning models.
+# RBF VAM(Visual Analysis for Missingness)
+This is the GitHub Repository for the RBF visualization for VAM. VAM is short for Visual Analysis for Missingness. It is built upon an ML model dataset called the Rashomon dataset. If an ML model is in the Rashomon dataset, it has a similar performance to other machine learning models.
 
 Key Characteristics of a Rashomon Dataset:
 ===
@@ -10,7 +10,7 @@ Sensitivity Analysis: The dataset should facilitate analysis of how small change
 
 Purpose:
 ===
-Model Interpretability: To understand how different models interpret the same data and to study the robustness of model explanations.  
-Bias and Fairness: To explore how different models might exhibit biases or fairness issues in various ways despite similar performance.  
+Model Interpretability: To understand how different models interpret the same data and to study the robustness of model explanations.    
+Bias and Fairness: To explore how different models might exhibit biases or fairness issues in various ways despite similar performance.    
 Ensemble Methods: To analyze the benefits of combining multiple models to achieve better generalization and robustness.  
 
