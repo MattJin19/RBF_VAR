@@ -1,4 +1,4 @@
-# streamlit run "streamlit_rbf(1.51).py" --server.enableXsrfProtection false
+# streamlit run "streamlit_rbf(1.6).py" --server.enableXsrfProtection false
 
 import numpy as np
 import pandas as pd
@@ -20,6 +20,7 @@ st.markdown(
     .custom-title {
         font-size: 24px;
         font-weight: bold;
+        margin-bottom: 0px;
     }
     </style>
     <div class="custom-title">Interactive Visualization of TreeFarms</div>
@@ -98,40 +99,51 @@ x_grid, y_grid = np.meshgrid(np.linspace(x_min, x_max, resolution), np.linspace(
 z_grid = rbf(x_grid, y_grid)
 
 # Create heatmap with custom color scale
-colorscale = [[0, color_start], [1, color_end]]
+midpoint_value = (colorbar_min + colorbar_max) / 2
+
+# Create heatmap with custom color scale, ensuring midpoint is white
+colorscale = [
+    [0, color_start],  # Start color
+    [(midpoint_value - colorbar_min) / (colorbar_max - colorbar_min), '#FFFFFF'],  # Midpoint as white
+    [1, color_end]  # End color
+]
+
+# Create heatmap with the new colorscale
 heatmap = go.Heatmap(
-    z=z_grid,
-    x=np.linspace(x_min, x_max, resolution),
-    y=np.linspace(y_min, y_max, resolution),
-    colorscale=colorscale,
-    zmin=colorbar_min,
-    zmax=colorbar_max,
-    colorbar=dict(title=heatmap_value, tickvals=np.arange(np.ceil(colorbar_min), np.floor(colorbar_max) + 1, 1)),
-    opacity=0.5
+    z = z_grid,
+    x = np.linspace(x_min, x_max, resolution),
+    y = np.linspace(y_min, y_max, resolution),
+    colorscale = colorscale,
+    zmin = colorbar_min,
+    zmax = colorbar_max,
+    colorbar = dict(title=heatmap_value, tickvals=np.arange(np.ceil(colorbar_min), np.floor(colorbar_max) + 1, 1)),
+    opacity = 0.5
 )
 
-# Create scatter plot with optional annotations
+# Create scatter plot with optional annotations (as before)
 scatter = go.Scatter(
-    x=x_raw,
-    y=y_raw,
-    mode='markers+text' if show_annotations else 'markers',
-    marker=dict(size=marker_size, color='black', opacity=1),
-    text=[str(idx) for idx in range(num_points)] if show_annotations else None,
-    textposition='top center' if show_annotations else None
+    x = x_raw,
+    y = y_raw,
+    mode = 'markers+text' if show_annotations else 'markers',
+    marker = dict(size=marker_size, color='black', opacity=1),
+    text = [str(idx) for idx in range(num_points)] if show_annotations else None,
+    textposition = 'top center' if show_annotations else None
 )
 
-# Create initial figure
+# Create the figure (as before)
 fig = make_subplots()
 fig.add_trace(heatmap)
 fig.add_trace(scatter)
 
-# Set layout
+# Set layout with larger font for x and y ticks
 fig.update_layout(
     xaxis_title=x_axis,
     yaxis_title=y_axis,
-    width=1600,
-    height=600
+    xaxis = dict(tickfont = dict(size=16)),
+    yaxis = dict(tickfont = dict(size=16)),  
+    width = 1600,
+    height = 600
 )
 
-# Render the plot with container width
+# Render the plot with container width (as before)
 st.plotly_chart(fig, use_container_width=True)
