@@ -1,4 +1,4 @@
-# streamlit run "streamlit_rbf(1.6).py" --server.enableXsrfProtection false
+# streamlit run "streamlit_rbf(1.7).py" --server.enableXsrfProtection false
 
 import numpy as np
 import pandas as pd
@@ -80,6 +80,12 @@ colorbar_max = col_max.number_input('Colorbar Max Value', value=float(data[heatm
 # Checkbox for showing/hiding row index annotations
 show_annotations = st.sidebar.checkbox('Show Row Index Annotations', value=True)
 
+# Dropdown to select the RBF function
+rbf_function = st.sidebar.selectbox(
+    'Select RBF Function',
+    ['linear', 'gaussian', 'multiquadric', 'inverse', 'thin_plate', 'cubic']
+)
+
 
 # =================
 
@@ -92,7 +98,7 @@ z_filtered = data[heatmap_value].values[:num_points]
 x_min, x_max = min(x_raw), max(x_raw)
 y_min, y_max = min(y_raw), max(y_raw)
 z_min, z_max = min(z_filtered), max(z_filtered)
-rbf = Rbf(x_raw, y_raw, z_filtered, function='linear')
+rbf = Rbf(x_raw, y_raw, z_filtered, function=rbf_function)
 
 # Create grid
 x_grid, y_grid = np.meshgrid(np.linspace(x_min, x_max, resolution), np.linspace(y_min, y_max, resolution))
@@ -135,14 +141,14 @@ fig = make_subplots()
 fig.add_trace(heatmap)
 fig.add_trace(scatter)
 
-# Set layout with larger font for x and y ticks
 fig.update_layout(
-    xaxis_title=x_axis,
-    yaxis_title=y_axis,
-    xaxis = dict(tickfont = dict(size=16)),
-    yaxis = dict(tickfont = dict(size=16)),  
-    width = 1600,
-    height = 600
+    xaxis_title=dict(text=x_axis, font=dict(size=30)), 
+    yaxis_title=dict(text=y_axis, font=dict(size=30)),  
+    xaxis=dict(tickfont=dict(size=16)),
+    yaxis=dict(tickfont=dict(size=16)), 
+    width=1600,
+    height=600,
+    margin=dict(t=20) 
 )
 
 # Render the plot with container width (as before)
