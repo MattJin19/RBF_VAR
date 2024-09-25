@@ -31,11 +31,11 @@ pip install pandas
 
 ## License
 
-VAM code released under the Apache License 2.0. See [LICENSE](LICENSE) for additional details.
+VAARS code released under the Apache License 2.0. See [LICENSE](LICENSE) for additional details.
 
 ## Citing RIT ٩(๑>◡<๑)۶
 
-If you find this repository useful, please consider giving a star :star: and citation the following related papers:
+If you find this repository useful, please consider giving a star :star: and cite the following related papers:
 
 ```
 @misc{Jin:2024:igaiva,
