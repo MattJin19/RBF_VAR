@@ -1,5 +1,3 @@
-# streamlit run "streamlit_rbf(1.7).py" --server.enableXsrfProtection false
-
 import numpy as np
 import pandas as pd
 import plotly.graph_objs as go
@@ -86,6 +84,8 @@ rbf_function = st.sidebar.selectbox(
     ['linear', 'gaussian', 'multiquadric', 'inverse', 'thin_plate', 'cubic']
 )
 
+# Add a checkbox to toggle the heatmap
+show_heatmap = st.sidebar.checkbox('Show Heatmap', value=True)
 
 # =================
 
@@ -104,10 +104,11 @@ rbf = Rbf(x_raw, y_raw, z_filtered, function=rbf_function)
 x_grid, y_grid = np.meshgrid(np.linspace(x_min, x_max, resolution), np.linspace(y_min, y_max, resolution))
 z_grid = rbf(x_grid, y_grid)
 
-# Create heatmap with custom color scale
-midpoint_value = (colorbar_min + colorbar_max) / 2
+# Calculate colors for scatter points
+scatter_colors = rbf(x_raw, y_raw)
 
-# Create heatmap with custom color scale, ensuring midpoint is white
+# Create custom color scale
+midpoint_value = (colorbar_min + colorbar_max) / 2
 colorscale = [
     [0, color_start],  # Start color
     [(midpoint_value - colorbar_min) / (colorbar_max - colorbar_min), '#FFFFFF'],  # Midpoint as white
@@ -126,30 +127,42 @@ heatmap = go.Heatmap(
     opacity = 0.5
 )
 
-# Create scatter plot with optional annotations (as before)
+# Create scatter plot with colors based on RBF values
 scatter = go.Scatter(
     x = x_raw,
     y = y_raw,
     mode = 'markers+text' if show_annotations else 'markers',
-    marker = dict(size=marker_size, color='black', opacity=1),
+    marker = dict(
+        size=marker_size,
+        color=scatter_colors,
+        colorscale=colorscale,
+        cmin=colorbar_min,
+        cmax=colorbar_max,
+        opacity=1,
+        showscale=not show_heatmap  # Show colorbar for scatter when heatmap is off
+    ),
     text = [str(idx) for idx in range(num_points)] if show_annotations else None,
     textposition = 'top center' if show_annotations else None
 )
 
-# Create the figure (as before)
+# Create the figure
 fig = make_subplots()
-fig.add_trace(heatmap)
+
+# Add traces based on the checkbox state
+if show_heatmap:
+    fig.add_trace(heatmap)
 fig.add_trace(scatter)
 
+# Update layout
 fig.update_layout(
-    xaxis_title=dict(text=x_axis, font=dict(size=30)), 
-    yaxis_title=dict(text=y_axis, font=dict(size=30)),  
+    xaxis_title=dict(text=x_axis, font=dict(size=30)),
+    yaxis_title=dict(text=y_axis, font=dict(size=30)),
     xaxis=dict(tickfont=dict(size=16)),
-    yaxis=dict(tickfont=dict(size=16)), 
+    yaxis=dict(tickfont=dict(size=16)),
     width=1600,
     height=600,
-    margin=dict(t=20) 
+    margin=dict(t=20)
 )
 
-# Render the plot with container width (as before)
+# Render the plot with container width
 st.plotly_chart(fig, use_container_width=True)
