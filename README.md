@@ -1,6 +1,6 @@
 # RBF VARS(Visual Analysis for Rashomon Set)
 This is the GitHub Repository for supporting paper *"VARS: Visual Analysis for Rashomon Set of Machine Learning
-Models"*. VARS is short for Visual Analysis for Rashomon Set. It is built upon an ML model dataset called the Rashomon dataset. If an ML model is in the Rashomon dataset, it has a similar performance to other machine learning models in this dataset.
+Models"*. VARS is short for Visual Analysis for Rashomon Set. It is built upon a machine learning(ML) model dataset called the Rashomon dataset. If an ML model is in the Rashomon dataset, it has a similar performance to other machine learning models in this dataset. The visual analysis(VA) system is built upon a Rashomon-collecting application of the treefarms.
 
 Key Characteristics of a Rashomon Dataset
 ===
@@ -21,17 +21,22 @@ The code requires Python >= 3.8
 NumPy: 1.19.5  
 Matplotlib: 3.2.2  
 Pandas: 1.1.5.  
+treefarms
 
 if not please use:
 ```
 pip install numpy
 pip install matplotlib
 pip install pandas
+pip install treefarms
 ```
 
 ## License
 
 VARS code released under the Apache License 2.0. See [LICENSE](LICENSE) for additional details.
+
+## Acknowledgement
+I would like to express our gratitude to the people who facilitated this work from Duke University, USA.
 
 ## Citing RIT ٩(๑>◡<๑)۶
 
