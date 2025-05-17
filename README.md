@@ -1,6 +1,6 @@
-# RBF VARS(Visual Analysis for Rashomon Set)
-This is the GitHub Repository for supporting paper *"VARS: Visual Analysis for Rashomon Set of Machine Learning
-Models"*. VARS is short for Visual Analysis for Rashomon Set. It is built upon a machine learning(ML) model dataset called the Rashomon dataset. If an ML model is in the Rashomon dataset, it has a similar performance to other machine learning models in this dataset. The visual analysis(VA) system is built upon a Rashomon-collecting application of the treefarms.
+# RBF VAR(Visual Analysis for Rashomon Set)
+This is the GitHub Repository for supporting paper *"VAR: Visual Analysis for Rashomon Set of Machine Learning
+Models' Performance"*. VAR is short for Visual Analysis for Rashomon Set. It is built upon a machine learning(ML) model dataset called the Rashomon dataset. If an ML model is in the Rashomon dataset, it has a similar performance to other machine learning models in this dataset. The visual analysis(VA) system is built upon a Rashomon-collecting application of the treefarms.
 
 Key Characteristics of a Rashomon Dataset
 ===
