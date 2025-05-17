@@ -36,7 +36,7 @@ pip install treefarms
 VARS code released under the Apache License 2.0. See [LICENSE](LICENSE) for additional details.
 
 ## Acknowledgement
-I would like to express our gratitude to the people who facilitated this work from Duke University, USA.
+I would like to express our gratitude to the people who facilitated this work from Duke University, USA, especially to Professor Rudin's team members.
 
 ## Citing iGAiVA(fundamental work) and VAR(in the future) ٩(๑>◡<๑)۶
 
