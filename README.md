@@ -38,7 +38,7 @@ VARS code released under the Apache License 2.0. See [LICENSE](LICENSE) for addi
 ## Acknowledgement
 I would like to express our gratitude to the people who facilitated this work from Duke University, USA.
 
-## Citing RIT ٩(๑>◡<๑)۶
+## Citing iGAiVA(fundamental work) and VAR(in the future) ٩(๑>◡<๑)۶
 
 If you find this repository useful, please consider giving a star :star: and cite the following related papers:
 
