@@ -32,7 +32,8 @@ pip install treefarms
 ```
 
 ## Demo Webpage
-Visit http://var-demo.com/ for an interactive webpage of the VAR System.
+Visit https://var-demo.streamlit.app/ for an interactive webpage of the VAR System.
+Feel free to upload and test the structured data from any dataset you like.
 
 ## License
 
