@@ -32,7 +32,7 @@ pip install treefarms
 ```
 
 ## Demo Webpage
-Visit https://vars.com for an interactive webpage of the VAR System.
+Visit http://var-demo.com/ for an interactive webpage of the VAR System.
 
 ## License
 
